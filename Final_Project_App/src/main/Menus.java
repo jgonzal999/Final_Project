@@ -1,7 +1,7 @@
 package main;
 
 public class Menus {
-	public void welcome() {
+	public void wellcome() {
 		System.out.println("********************************************");
 		System.out.println("*** Welcome to File Handling Application ***");
 		System.out.println("***            by LockedMe.com           ***");

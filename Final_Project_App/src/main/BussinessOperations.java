@@ -7,10 +7,17 @@ import java.io.IOException;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import main.Menus;
 
-public class BussinessOperations {
+public class BussinessOperations implements BOperations {
 	
-	String defdirectory = new String("//home//javiergonzalezv//Desktop//ExercisesTemp//"); 
+	String defdirectory = new String("//home//javiergonzalezv//Desktop//ExercisesTemp//");
+	Menus menu = new Menus();
+	
+	public BussinessOperations() {
+		menu.wellcome();		
+	}
+	
 	public void workDirectory(String a) throws IOException {
 		String directory = new String();
 		for (int i=0;i<a.length();i++) {
