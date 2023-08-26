@@ -20,21 +20,25 @@ public class BussinessOperations implements BOperations {
 	
 	public void workDirectory(String a) throws IOException {
 		String directory = new String();
-		for (int i=0;i<a.length();i++) {
-			directory+=a.charAt(i);
-			if (a.charAt(i)=='/') {
-				directory+="/";
+		if (a.equals("d")) {
+			directory= defdirectory;
+		}else {			
+			for (int i=0;i<a.length();i++) {
+				directory+=a.charAt(i);
+				if (a.charAt(i)=='/') {
+					directory+="/";
+				}
+				if (i==a.length()-1 && a.charAt(i)!='/') {
+					directory+="//";
+				}
 			}
-			if (i==a.length()-1 && a.charAt(i)!='/') {
-				directory+="//";
+			File f = new File(directory);
+			if(f.exists()) {
+				System.out.println("OK, Work Directory exists.");	
+				defdirectory= directory;
+			}else {
+				System.out.println("Sorry, Directory:\n  "+a+"\n doesn't exist.");
 			}
-		}
-		File f = new File(directory);
-		if(f.exists()) {
-			System.out.println("OK, Work Directory exists.");	
-			defdirectory= directory;
-		}else {
-			System.out.println("Sorry, Directory:\n  "+a+"\n doesn't exist.");
 		}
 		
 	}

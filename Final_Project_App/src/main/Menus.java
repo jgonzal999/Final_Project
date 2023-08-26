@@ -10,13 +10,17 @@ public class Menus {
 	}
 	public void mainMenu(String a) {
 		System.out.println("\nWorking Directory: "+a.replace("//", "/"));
-		System.out.println("\nPlease select the operation:\n\n 1.Add work directory\n 2.Add new file\n 3.Delete file\n 4.List files\n 5.Write to an existing file \n 6.Read an existing file \n\n 7.QUIT");
+		System.out.println("\nMain Menu:\n\n 1.List a directory\n 2.Operations\n\n 3.QUIT\\n\\n Please, select an option:");
+	}
+	public void operationsMenu(String a) {
+		System.out.println("\nWorking Directory: "+a.replace("//", "/"));
+		System.out.println("\nMain Menu:\n\n 1.Add new file\n 2.Delete file\n 3.Search files\n\n 4.QUIT\n\n Please, select an option:");
 	}
 	public void insertNew() {
-		System.out.println("Please, enter new file: ");
+		System.out.println("Please, enter new file (if not added default extension will be .txt): ");
 	}
 	public void insertDel() {
-		System.out.printf("Please, enter file to delete (complete): ");
+		System.out.printf("Please, enter file to delete (complete name without path): ");
 	}
 	public void insertDirectory() {
 		System.out.printf("Please, enter directory ('d' for default): ");
