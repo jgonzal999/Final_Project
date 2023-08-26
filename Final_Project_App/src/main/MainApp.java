@@ -12,6 +12,7 @@ public class MainApp {
 		BussinessOperations oper = new BussinessOperations();
 		Scanner sc = new Scanner(System.in);
 		int op=0;
+		int op2=0;
 		char ex ='n';
 		String a;
 		String b;
@@ -31,22 +32,74 @@ public class MainApp {
 						menu.insertDirectory();
 						a = sc.next();
 						try {
-							oper.workDirectory(a);
+							if(oper.workDirectory(a)) oper.listFiles(a);
 						}catch(Exception e) {
 							menu.sorry();
 							System.out.println(e);
 						}						
 						break;
 					case 2:
-						menu.insertNew();
-						a = sc.next();
-						try {
-							oper.addNewFile(a);
-						}catch(Exception e) {
-							menu.sorry();
-							System.out.println(e);
-						}						
+						do {
+							do {
+								menu.operationsMenu(oper.defdirectory);
+								try {
+									op2 = sc.nextInt();
+								}catch(Exception e) {
+									op2=100;
+									sc.reset();
+								}
+							}while (op2<1 || op2>4);
+							if (op2>0 && op2<4) {
+								switch(op2) {
+									case 1:
+										menu.insertDirectory();
+										a = sc.next();
+										try {
+											if(oper.workDirectory(a)) {
+												menu.insertNew();
+												a = sc.next();
+												try {
+													oper.addNewFile(a);
+												}catch(Exception e) {
+													menu.sorry();
+													System.out.println(e);
+												}						
+												break;
+											}
+										}catch(Exception e) {
+											menu.sorry();
+											System.out.println(e);
+										}
+										break;
+									case 2:
+										menu.insertDirectory();
+										a = sc.next();
+										try {
+											if(oper.workDirectory(a)) {
+												menu.insertDel();
+												a = sc.next();
+												try {
+													oper.delFile(a);
+												}catch(Exception e) {
+													menu.sorry();
+													System.out.println(e);
+												}						
+												break;
+											}
+										}catch(Exception e) {
+											menu.sorry();
+											System.out.println(e);
+										}
+										break;
+										
+									default:
+										break;
+								}
+							}				
+										
+						}while(op2!=4);
 						break;
+						
 					case 3:
 						menu.insertDel();
 						a = sc.next();
@@ -88,6 +141,8 @@ public class MainApp {
 							menu.sorry();
 						}
 						break;
+					default:
+						break;
 				}
 						
 			}else {
@@ -97,7 +152,7 @@ public class MainApp {
 					op=0;
 				}
 			}
-		}while(op!=7);
+		}while(op!=3);
 		sc.close();
 		menu.bye();
 

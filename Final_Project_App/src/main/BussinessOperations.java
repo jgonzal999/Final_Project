@@ -18,7 +18,7 @@ public class BussinessOperations implements BOperations {
 		menu.wellcome();		
 	}
 	
-	public void workDirectory(String a) throws IOException {
+	public boolean workDirectory(String a) throws IOException {
 		String directory = new String();
 		if (a.equals("d")) {
 			directory= defdirectory;
@@ -32,16 +32,18 @@ public class BussinessOperations implements BOperations {
 					directory+="//";
 				}
 			}
-			File f = new File(directory);
-			if(f.exists()) {
-				System.out.println("OK, Work Directory exists.");	
-				defdirectory= directory;
-			}else {
-				System.out.println("Sorry, Directory:\n  "+a+"\n doesn't exist.");
-			}
 		}
-		
+		File f = new File(directory);
+		if(f.exists()) {
+			System.out.println("OK, Work Directory exists.");	
+			defdirectory= directory;
+			return true;
+		}else {
+			System.out.println("Sorry, Directory:\n  "+a+"\n doesn't exist.");
+			return false;
+		}
 	}
+	
 	public void addNewFile(String a) throws IOException {
 		//I find .txt, if not I add it
 		String pattern = ".txt";
@@ -102,6 +104,14 @@ public class BussinessOperations implements BOperations {
 		}
 		
 	}
+	
+	public boolean searchFiles(String a) throws IOException{
+		return false;
+	}
+	
+	
+	
+	
 	
 	public void writeFile(String a, String b, Scanner dis) throws IOException {
 		String directory = new String();
