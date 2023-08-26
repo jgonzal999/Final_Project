@@ -8,6 +8,6 @@ public interface BOperations {
 	public void addNewFile(String a) throws IOException;
 	public void delFile(String a) throws IOException;
 	public void listFiles(String a) throws IOException;
-	public boolean searchFiles(String a) throws IOException;
+	public boolean searchFiles(String a, String b) throws IOException;
 
 }

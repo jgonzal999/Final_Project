@@ -4,6 +4,9 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -80,32 +83,73 @@ public class BussinessOperations implements BOperations {
 		if (a.equals("d")) {
 			directory= defdirectory;
 		}else {
-			for (int i=0;i<a.length();i++) {
-				directory+=a.charAt(i);
-				if (a.charAt(i)=='/') {
-					directory+="/";
-				}
-			}
+			a.replace("//", "/");
+			directory=a.replace("/", "//");
 		}
-		File f = new File(directory);
+		
+		File f = new File(directory);		
 		if(f.exists()) {
+			ArrayList<String> totalfiles = new ArrayList<String>();
+			ArrayList<String> totaldirectories = new ArrayList<String>();
 			File[] files = f.listFiles();
 			for (File file: files) {
 				if(file.isFile()) {
-					System.out.println("File:\t"+file.getName());					
+					totalfiles.add(file.getName());				
 				}
 				if(file.isDirectory()) {
-					System.out.println("Directory:\t"+file.getName());					
+					totaldirectories.add(file.getName());				
 				}
 			}
-	
+			Collections.sort(totalfiles);
+			Collections.sort(totaldirectories);
+			System.out.println("Directories:\n");
+			for (String dir: totaldirectories) System.out.println(dir+"\n");
+			System.out.println("Files:\n");
+			for (String fil: totalfiles) System.out.println(fil+"\n");
 		}else {
 			System.out.println("Sorry, Directory: "+a.replace("//", "/")+" doesn't exist.");
 		}
 		
 	}
 	
-	public boolean searchFiles(String a) throws IOException{
+	public boolean searchFiles(String a, String b) throws IOException{
+		String directory = new String();
+
+		if (a.equals("d")) {
+			directory= defdirectory;
+		}else {
+			a.replace("//", "/");
+			directory=a.replace("/", "//");
+		}
+		
+		File f = new File(directory);		
+		if(f.exists()) {
+			ArrayList<String> totalfiles = new ArrayList<String>();
+			File[] files = f.listFiles();
+			for (File file: files) {
+				if(file.isFile()) {
+					totalfiles.add(file.getName());				
+				}
+			}
+			ArrayList<String> foundedfiles=new ArrayList<String>(); 
+			String pattern = b;
+			Pattern p = Pattern.compile(pattern);
+			Iterator<String> itr=totalfiles.iterator();
+			while(itr.hasNext()){
+				String c=itr.next();
+				Matcher d = p.matcher(c);
+				if(d.find()) {
+					foundedfiles.add(c);
+				}			
+			} 
+			
+
+			System.out.println("Founded Files:\n");
+			for (String fil: foundedfiles) System.out.println(fil+"\n");
+		}else {
+			System.out.println("Sorry, Directory: "+a.replace("//", "/")+" doesn't exist.");
+		}
+		
 		return false;
 	}
 	
