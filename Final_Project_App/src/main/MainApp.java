@@ -91,55 +91,32 @@ public class MainApp {
 											System.out.println(e);
 										}
 										break;
-										
+									case 3:
+										menu.insertDirectory();
+										a = sc.next();
+										try {
+											if(oper.workDirectory(a)) {
+												menu.insertsearch();
+												b = sc.next();
+												try {
+													oper.searchFiles(a, b);
+												}catch(Exception e) {
+													menu.sorry();
+													System.out.println(e);
+												}						
+												break;
+											}
+										}catch(Exception e) {
+											menu.sorry();
+											System.out.println(e);
+										}
+										break;										
 									default:
 										break;
 								}
 							}				
 										
 						}while(op2!=4);
-						break;
-						
-					case 3:
-						menu.insertDel();
-						a = sc.next();
-						try {
-							oper.delFile(a);
-						}catch(Exception e) {
-							menu.sorry();
-							System.out.println(e);
-						}
-						break;
-					case 4:
-						menu.insertDirectory();
-						a = sc.next();
-						try {
-							oper.listFiles(a);
-						}catch(Exception e) {
-							menu.sorry();
-						}
-						break;
-					case 5:						
-						menu.insertDirectory();
-						a = sc.next();
-						menu.insertFile();
-						b=sc.next();
-						try {
-							oper.writeFile(a,b,sc);
-						}catch(Exception e) {
-							menu.sorry();
-						}
-						break;
-					case 6:
-						menu.insertDirectory();
-						a = sc.next();
-						menu.readFile();
-						b=sc.next();
-						try {
-							oper.readFile(a,b);
-						}catch(Exception e) {
-							menu.sorry();
-						}
 						break;
 					default:
 						break;

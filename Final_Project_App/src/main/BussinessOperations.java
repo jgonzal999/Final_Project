@@ -38,11 +38,11 @@ public class BussinessOperations implements BOperations {
 		}
 		File f = new File(directory);
 		if(f.exists()) {
-			System.out.println("OK, Work Directory exists.");	
+			System.out.println(" OK, directory exists.");	
 			defdirectory= directory;
 			return true;
 		}else {
-			System.out.println("Sorry, Directory:\n  "+a+"\n doesn't exist.");
+			System.out.println(" Sorry, Directory:  "+directory.replace("//", "/")+" doesn't exist.");
 			return false;
 		}
 	}
@@ -57,9 +57,9 @@ public class BussinessOperations implements BOperations {
 		}
 		File file = new File(defdirectory+a);
         if (file.createNewFile()){
-        	System.out.println("File is created!");
+        	System.out.println(" File is created!");
         }else{
-        	System.out.println("Sorry, file:\n "+file+"\nalready exists.");
+        	System.out.println(" Sorry, file:\n "+file+"\nalready exists.");
         }
 	}
 	public void delFile(String a) throws IOException {
@@ -67,12 +67,12 @@ public class BussinessOperations implements BOperations {
 		try {
 			if (file.exists()) {
 				file.delete();
-				System.out.println("File is deleted!");
+				System.out.println(" File is deleted!");
 			}else {
-				System.out.println("Sorry, file:\n "+file+"\n doesn't exist.");
+				System.out.println(" Sorry, file:\n "+file+"\n doesn't exist.");
 			}
 		}catch (Exception e) {
-    		System.out.println("Sorry, file:\n "+file+"\n cannot be deleted.");
+    		System.out.println(" Sorry, file:\n "+file+"\n cannot be deleted.");
     		System.out.println(e);
     	}
 	}
@@ -102,12 +102,12 @@ public class BussinessOperations implements BOperations {
 			}
 			Collections.sort(totalfiles);
 			Collections.sort(totaldirectories);
-			System.out.println("Directories:\n");
-			for (String dir: totaldirectories) System.out.println(dir+"\n");
-			System.out.println("Files:\n");
-			for (String fil: totalfiles) System.out.println(fil+"\n");
+			System.out.println("\n Directories:");
+			for (String dir: totaldirectories) System.out.println(" "+dir);
+			System.out.println("\n Files:");
+			for (String fil: totalfiles) System.out.println("  "+fil);
 		}else {
-			System.out.println("Sorry, Directory: "+a.replace("//", "/")+" doesn't exist.");
+			System.out.println(" Sorry, Directory: "+a.replace("//", "/")+" doesn't exist.");
 		}
 		
 	}
@@ -120,8 +120,7 @@ public class BussinessOperations implements BOperations {
 		}else {
 			a.replace("//", "/");
 			directory=a.replace("/", "//");
-		}
-		
+		}		
 		File f = new File(directory);		
 		if(f.exists()) {
 			ArrayList<String> totalfiles = new ArrayList<String>();
@@ -141,16 +140,20 @@ public class BussinessOperations implements BOperations {
 				if(d.find()) {
 					foundedfiles.add(c);
 				}			
-			} 
-			
-
-			System.out.println("Founded Files:\n");
-			for (String fil: foundedfiles) System.out.println(fil+"\n");
+			}
+			System.out.println(" Files found:\n");
+//			System.out.println(foundedfiles);
+			if (foundedfiles.size()!=0) {
+				for (String fil: foundedfiles) System.out.println("  "+fil);
+				return true;
+			}else {
+				System.out.println(" Sorry, files not found (keyword: "+b+")");
+				return false;
+			}
 		}else {
-			System.out.println("Sorry, Directory: "+a.replace("//", "/")+" doesn't exist.");
+			System.out.println(" Sorry, Directory: "+a.replace("//", "/")+" doesn't exist.");
+			return false;
 		}
-		
-		return false;
 	}
 	
 	
