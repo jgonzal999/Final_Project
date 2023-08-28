@@ -18,18 +18,18 @@ public class MainApp {
 		String b;
 		do {			
 			do {
-				menu.mainMenu(oper.defdirectory);
+				menu.mainMenu();
 				try {
 					op = sc.nextInt();
 				}catch(Exception e) {
 					op=100;
-					sc.reset();
+					sc.nextLine();
 				}
 			}while (op<1 || op>3);
 			if (op>0 && op<3) {
 				switch(op) {
 					case 1:
-						menu.insertDirectory();
+						menu.insertDirectory(oper.defdirectory);
 						a = sc.next();
 						try {
 							if(oper.workDirectory(a)) oper.listFiles(a);
@@ -41,18 +41,18 @@ public class MainApp {
 					case 2:
 						do {
 							do {
-								menu.operationsMenu(oper.defdirectory);
+								menu.operationsMenu();
 								try {
 									op2 = sc.nextInt();
 								}catch(Exception e) {
 									op2=100;
-									sc.reset();
+									sc.nextLine();
 								}
 							}while (op2<1 || op2>4);
 							if (op2>0 && op2<4) {
 								switch(op2) {
 									case 1:
-										menu.insertDirectory();
+										menu.insertDirectory(oper.defdirectory);
 										a = sc.next();
 										try {
 											if(oper.workDirectory(a)) {
@@ -72,7 +72,7 @@ public class MainApp {
 										}
 										break;
 									case 2:
-										menu.insertDirectory();
+										menu.insertDirectory(oper.defdirectory);
 										a = sc.next();
 										try {
 											if(oper.workDirectory(a)) {
@@ -92,7 +92,7 @@ public class MainApp {
 										}
 										break;
 									case 3:
-										menu.insertDirectory();
+										menu.insertDirectory(oper.defdirectory);
 										a = sc.next();
 										try {
 											if(oper.workDirectory(a)) {

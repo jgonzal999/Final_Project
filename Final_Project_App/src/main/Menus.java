@@ -8,25 +8,24 @@ public class Menus {
 		System.out.println("   ***      Developer: Javier Gonzalez      ***");
 		System.out.println("   ********************************************");
 	}
-	public void mainMenu(String a) {
-		System.out.println("\nWorking Directory: "+a.replace("//", "/"));
+	public void mainMenu() {
 		System.out.println("\nMain Menu:\n\n 1.List a directory\n 2.Operations\n\n 3.QUIT\n\nPlease, select an option:");
 	}
-	public void operationsMenu(String a) {
-		System.out.println("\nWorking Directory: "+a.replace("//", "/"));
-		System.out.println("\nOperations Menu:\n\n 1.Add new file\n 2.Delete file\n 3.Search files\n\n 4.QUIT\n\nPlease, select an option:");
+	public void operationsMenu() {
+		System.out.println("\nOperations Menu:\n\n 1.Add new file\n 2.Delete file\n 3.Search files\n\n 4.Main Menu\n\nPlease, select an option:");
 	}
 	public void insertNew() {
-		System.out.println("Please, enter new file (if not added default extension will be .txt): ");
+		System.out.println("Please, enter new file (if not included, it will be added extension .txt): ");
 	}
 	public void insertDel() {
-		System.out.printf("Please, enter file to delete (complete name without path): ");
+		System.out.printf("Please, enter file to delete (full name without path): ");
 	}
-	public void insertDirectory() {
-		System.out.printf("Please, enter directory ('d' for default): ");
+	public void insertDirectory(String a) {
+		System.out.println("\nWorking directory: "+a.replace("//", "/"));
+		System.out.printf("Please, enter new directory or 'd' for default: ");
 	}
 	public void insertsearch() {
-			System.out.printf("Please insert File to search (complete or part of it): ");
+			System.out.printf("Please insert file to search (full name or part of it): ");
 	}
 	public void insertFile() {
 		System.out.printf("Please, enter file to write to it: ");
