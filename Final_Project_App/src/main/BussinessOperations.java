@@ -26,15 +26,8 @@ public class BussinessOperations implements BOperations {
 		if (a.equals("d")) {
 			directory= defdirectory;
 		}else {			
-			for (int i=0;i<a.length();i++) {
-				directory+=a.charAt(i);
-				if (a.charAt(i)=='/') {
-					directory+="/";
-				}
-				if (i==a.length()-1 && a.charAt(i)!='/') {
-					directory+="//";
-				}
-			}
+			a.replace("//", "/");// to prevent user can use double //
+			directory=a.replace("/", "//");
 		}
 		File f = new File(directory);
 		if(f.exists()) {
@@ -96,16 +89,43 @@ public class BussinessOperations implements BOperations {
 					totaldirectories.add(file.getName());				
 				}
 			}
-			Collections.sort(totalfiles);
-			Collections.sort(totaldirectories);
+//			Collections.sort(totalfiles); This is a already created method, I use mine
+//			Collections.sort(totaldirectories);
+//			Quick Sort Method
+			sort(totalfiles,0,totalfiles.size()-1);
+			sort(totaldirectories,0,totaldirectories.size()-1);
 			System.out.println("\n Directories:");
 			for (String dir: totaldirectories) System.out.println("   "+dir);
 			System.out.println("\n Files:");
 			for (String fil: totalfiles) System.out.println("   "+fil);
 		}else {
 			System.out.println(" Sorry, the directory: "+a.replace("//", "/")+" doesn't exist.");
+		}		
+	}
+	
+//	Quick Sort Method	
+	int partition(ArrayList<String> arr,int low, int high) {
+		String pivot =arr.get(high);
+		int i=low-1;
+		for (int j=low;j<high;j++) {
+			if (arr.get(j).compareToIgnoreCase(pivot)<0) {
+				i++;
+				String temp =arr.get(i);
+				arr.set(i,arr.get(j));
+				arr.set(j,temp);					
+			}
 		}
-		
+		String temp =arr.get(i+1);
+		arr.set(i+1,arr.get(high));
+		arr.set(high,temp);	
+		return i+1;
+	}	
+	public void sort(ArrayList<String> arr,int low,int high) {
+		if(low<high) {
+			int pi=partition(arr,low,high);
+			sort(arr,low,pi-1);
+			sort(arr,pi+1,high);
+		}
 	}
 	
 	public boolean searchFiles(String a, String b) throws IOException{
