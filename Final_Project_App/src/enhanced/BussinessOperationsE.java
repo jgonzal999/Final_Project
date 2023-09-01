@@ -1,20 +1,23 @@
-package main;
+package enhanced;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
+import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import main.Menus;
 
-public class BussinessOperations implements BOperations {
+public class BussinessOperationsE implements BOperationsE {
 	
 	String defdirectory = new String("//home//javiergonzalezv//Desktop//ExercisesTemp//");
 	Menus menu = new Menus();
 	
-	public BussinessOperations() {
+	public BussinessOperationsE() {
 		menu.wellcome();		
 	}
 	
@@ -22,7 +25,7 @@ public class BussinessOperations implements BOperations {
 		String directory = new String();
 		if (a.equals("d")) {
 			directory= defdirectory;
-		}else {
+		}else {	
 			if (a.charAt(0)!='/') a="/"+a;
 			if (a.charAt(a.length()-1)!='/') a=a+"/";
 			a.replace("//", "/");// to prevent user can use double //
@@ -65,7 +68,7 @@ public class BussinessOperations implements BOperations {
     	}
 	}
 	public void listFiles() throws IOException {
-						
+			
 		File f = new File(defdirectory);		
 		if(f.exists()) {
 			ArrayList<String> totalfiles = new ArrayList<String>();
@@ -118,7 +121,8 @@ public class BussinessOperations implements BOperations {
 		}
 	}
 	
-	public boolean searchFiles(String b) throws IOException{				
+	public boolean searchFiles(String b) throws IOException{
+				
 		File f = new File(defdirectory);		
 		if(f.exists()) {
 			ArrayList<String> totalfiles = new ArrayList<String>();
@@ -145,13 +149,92 @@ public class BussinessOperations implements BOperations {
 				for (String fil: foundedfiles) System.out.println("   "+fil);
 				return true;
 			}else {
-				System.out.println(" Sorry, files not found (pattern: "+b+")");
+				System.out.println(" Sorry, files not found (keyword: "+b+")");
 				return false;
 			}
 		}else {
 			System.out.println(" Sorry, the directory: "+defdirectory.replace("//", "/")+" doesn't exist.");
 			return false;
 		}
-	}
+	}	
 	
+	
+	public void writeFile(String b, Scanner dis) throws IOException {
+		
+		try {
+			File f = new File(defdirectory);
+			if (f.exists()) {
+				File file = new File(defdirectory+b);
+				if (file.exists() && file.getName().indexOf(".txt")>-1) {
+					FileOutputStream fos = new FileOutputStream(file.toString(),true);
+					System.out.println("Please enter text you want to write on the file (type %% to finish):\n");
+					String line = new String();
+					char escape= '%';
+					char lastch=' ';
+					boolean exit=false;
+					
+					while(!exit) {		// when we hit enter key it will stop reading data. 
+						fos.write((int)'\n');
+						line = dis.nextLine();
+						for (int i=0;i<line.length();i++) {
+							if (line.charAt(i)==escape || exit) {
+								if (lastch!=escape) {
+									lastch =escape;
+								}else {	
+									exit=true;
+								}
+							}else{
+								if (lastch==escape) {
+									fos.write(lastch);	// in file automatically convert it
+								}
+								fos.write(line.charAt(i));
+								lastch =line.charAt(i);
+							}
+						}						
+						
+					}
+					fos.close();
+					System.out.println("Done!");
+				}else {
+					if(!file.exists()) System.out.println("Sorry, file: "+file+" doesn't exists.");
+					if(file.getName().indexOf(".txt")<0) System.out.println("Sorry, file: "+file+" isn't a txt file.");
+				}
+			}else {
+				System.out.println("Sorry, directory: "+f.getName().replace("//", "/")+" doesn't exists.");
+			}
+		}catch (Exception e) {
+    		System.out.println("Sorry, try again");
+    		System.out.println(e);
+    	}
+
+	}
+	public void readFile(String b) throws IOException {
+		
+		try {
+			File f = new File(defdirectory);
+			if (f.exists()) {
+				File file = new File(defdirectory+b);
+				if (file.exists()) {
+					System.out.println("Reading file: ");
+					FileReader readfile = new FileReader(file);
+					int leter;
+					String text = new String(" ");
+					while ((leter=readfile.read()) != -1) {
+						text+=(char)leter;
+					}
+					System.out.println(text.replace("\n", "\n "));
+					readfile.close();
+				}else {
+					System.out.println("Sorry, file: "+file+"doesn't exists.");
+				}
+			}else {
+				System.out.println("Sorry, directory: "+f.getName().replace("//", "/")+"doesn't exists.");
+			}
+		}catch (Exception e) {
+    		System.out.println("Sorry, try again");
+    		System.out.println(e);
+    	}
+
+	}
+
 }

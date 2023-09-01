@@ -1,6 +1,6 @@
-package main;
+package enhanced;
 
-public class Menus {
+public class MenusE {
 	public void wellcome() {
 		System.out.println("   ********************************************");
 		System.out.println("   *** Welcome to File Handling Application ***");
@@ -12,7 +12,7 @@ public class Menus {
 		System.out.println("\nMain Menu:\n\n 1.List a directory\n 2.Operations\n\n 3.QUIT\n\nPlease, select an option:");
 	}
 	public void operationsMenu() {
-		System.out.println("\nOperations Menu:\n\n 1.Add new file\n 2.Delete file\n 3.Search files\n\n 4.Main Menu\n\nPlease, select an option:");
+		System.out.println("\nOperations Menu:\n\n 1.Add new file\n 2.Delete file\n 3.Search files\n 4.Write to a file\n 5.Read a file\n\n 6.Main Menu\n\nPlease, select an option:");
 	}
 	public void insertNew() {
 		System.out.println("Please, enter new file (if not included, it will be added extension .txt): ");
@@ -27,11 +27,22 @@ public class Menus {
 	public void insertsearch() {
 			System.out.printf("Please insert file to search (full name or part of it): ");
 	}
+	public void insertFile() {
+		System.out.printf("Please, enter an exist file to write to it (full name and .txt mandatory: ");
+	}
+	public void readFile() {
+		System.out.printf("Please, enter file to read it (full name and .txt mandatory: ");
+	}
+	public void insertText() {
+		System.out.printf("Please, enter text: ");
+	}
 	public void cont() {
 		System.out.println("Do you really want to quit the app? (y/n): ");
 	}
 	public void bye() {
+		System.out.println("   *****************************************************");
 		System.out.println("   *** Bye, thank you for use LockedMe.com products! ***");
+		System.out.println("   *****************************************************");
 	}
 	public void sorry() {
 		System.out.println("Sorry, try it again!");

@@ -1,15 +1,15 @@
-package main;
+package enhanced;
 
 import java.util.Scanner;
 
-import main.Menus;
-import main.BussinessOperations;
+import enhanced.BussinessOperationsE;
+import enhanced.MenusE;
 
-public class MainApp {
+public class MainAppE {
 
 	public static void main(String[] args) {
-		Menus menu = new Menus();
-		BussinessOperations oper = new BussinessOperations();
+		MenusE menu = new MenusE();
+		BussinessOperationsE oper = new BussinessOperationsE();
 		Scanner sc = new Scanner(System.in);
 		int op=0;
 		int op2=0;
@@ -48,8 +48,8 @@ public class MainApp {
 									op2=100;
 									sc.nextLine();
 								}
-							}while (op2<1 || op2>4);
-							if (op2>0 && op2<4) {
+							}while (op2<1 || op2>6);
+							if (op2>0 && op2<6) {
 								switch(op2) {
 									case 1:
 										menu.insertDirectory(oper.defdirectory);
@@ -110,13 +110,53 @@ public class MainApp {
 											menu.sorry();
 											System.out.println(e);
 										}
-										break;										
+										break;
+									case 4:
+										menu.insertDirectory(oper.defdirectory);
+										a = sc.next();
+										try {
+											if(oper.workDirectory(a)) {
+												menu.insertFile();
+												b = sc.next();
+												try {
+													oper.writeFile(b,sc);
+												}catch(Exception e) {
+													menu.sorry();
+													System.out.println(e);
+												}						
+												break;
+											}
+										}catch(Exception e) {
+											menu.sorry();
+											System.out.println(e);
+										}
+										break;
+									case 5:
+										menu.insertDirectory(oper.defdirectory);
+										a = sc.next();
+										try {
+											if(oper.workDirectory(a)) {
+												menu.readFile();
+												b = sc.next();
+												try {
+													oper.readFile(b);
+												}catch(Exception e) {
+													menu.sorry();
+													System.out.println(e);
+												}						
+												break;
+											}
+										}catch(Exception e) {
+											menu.sorry();
+											System.out.println(e);
+										}
+										break;	
 									default:
 										break;
 								}
 							}				
 										
-						}while(op2!=4);
+						}while(op2!=6);
 						break;
 					default:
 						break;
@@ -134,5 +174,7 @@ public class MainApp {
 		menu.bye();
 
 	}
+
+	
 
 }
