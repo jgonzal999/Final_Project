@@ -10,15 +10,18 @@ import java.util.Iterator;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import main.Menus;
+import enhanced.MenusE;
+import enhanced.UsersE;
 
 public class BussinessOperationsE implements BOperationsE {
 	
 	String defdirectory = new String("//home//javiergonzalezv//Desktop//ExercisesTemp//");
-	Menus menu = new Menus();
+	MenusE menu = new MenusE();
 	
 	public BussinessOperationsE() {
-		menu.wellcome();		
+		menu.wellcome();
+		UsersE users = new UsersE();
+		UsersE[] totalusers = users.Users();	
 	}
 	
 	public boolean workDirectory(String a) throws IOException {
