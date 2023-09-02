@@ -13,16 +13,19 @@ import java.util.regex.Pattern;
 import enhanced.MenusE;
 import enhanced.UsersE;
 
+
+
 public class BussinessOperationsE implements BOperationsE {
 	
 	String defdirectory = new String("//home//javiergonzalezv//Desktop//ExercisesTemp//");
 	MenusE menu = new MenusE();
 	
+	
 	public BussinessOperationsE() {
-		menu.wellcome();
-		UsersE users = new UsersE();
-		UsersE[] totalusers = users.Users();	
+		menu.wellcome();			
 	}
+	
+	
 	
 	public boolean workDirectory(String a) throws IOException {
 		String directory = new String();

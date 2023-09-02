@@ -9,11 +9,21 @@ public class MenusE {
 		System.out.println("   ********************************************");
 	}
 	public void mainMenu() {
-		System.out.println("\nMain Menu:\n\n 1.List a directory\n 2.Operations\n\n 3.QUIT\n\nPlease, select an option:");
+		System.out.println("\nMAIN MENU:\n\n 1.List a directory\n 2.Operations\n\n 3.QUIT\n\nPlease, select an option:");
 	}
 	public void operationsMenu() {
-		System.out.println("\nOperations Menu:\n\n 1.Add new file\n 2.Delete file\n 3.Search files\n 4.Write to a file\n 5.Read a file\n\n 6.Main Menu\n\nPlease, select an option:");
+		System.out.println("\nOPERATIONS MENU:\n\n 1.Add new file\n 2.Delete file\n 3.Search files\n 4.Write to a file\n 5.Read a file\n\n 6.Main Menu\n\nPlease, select an option:");
 	}
+	public void login() {
+		System.out.println("Please, enter login: ");
+	}
+	public void pwd(int times) {
+		System.out.println("Please, enter pwd (Max 3 attemps: "+times+") : ");
+	}
+	public void wellcomeUser(String a, String b) {
+		System.out.println(" Wellcome "+a+" "+b+" have a nice day!!");
+	}
+	
 	public void insertNew() {
 		System.out.println("Please, enter new file (if not included, it will be added extension .txt): ");
 	}
