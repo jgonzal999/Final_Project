@@ -26,7 +26,6 @@ public class BussinessOperationsE implements BOperationsE {
 	}
 	
 	
-	
 	public boolean workDirectory(String a) throws IOException {
 		String directory = new String();
 		if (a.equals("d")) {

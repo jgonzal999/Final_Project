@@ -22,13 +22,14 @@ public class MainAppE {
 		boolean enter = false;
 		int times = 0;
 		boolean[] permission={false,false,false,false,false,false};
+		ArrayList<Object> userfind;
 		
 		do {
 			menu.login();
 			a = sc.next();
 			menu.pwd(times);
 			b = sc.next();
-			ArrayList<Object> userfind=user.UserCheck(a,b);
+			userfind=user.UserCheck(a,b);
 			if (userfind.size()==3) {
 				enter =true;
 				menu.wellcomeUser((String)userfind.get(0), (String)userfind.get(1));
@@ -220,10 +221,15 @@ public class MainAppE {
 				}
 			}while(op!=3);
 		}else {
-			System.out.println(" SYou have reached the maximum number of attemps.\n");
+			System.out.println(" You have reached the maximum number of attemps.\n");
 		}
 		sc.close();
-		menu.bye();
+		if (enter) {
+			menu.bye((String)userfind.get(0));
+		}else {
+			menu.bye();
+		}
+		
 
 	}
 
